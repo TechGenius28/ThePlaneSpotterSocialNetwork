@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    {% for p in data %}
+
+    <div class="home_header1">
+      <div class="home_latest_title1">
+          <h1>{{p.val().title}} Community</h1>
+          <p>{{p.val().About}}</p>
+          <p>Can't find a community for you?</p>
+          <p>Create a community...</p>
+          <form action="/create_community">
+            <input type="submit" value="Create" />
+        </form>
+        {% if session["usr"] %}
+        <form method="POST" action="/community_area/{{p.key()}}" enctype="multipart/form-data">
+          <input type="submit" value="Subscribe" />
+      </form>
+      {% endif %}
+      </div>
+  </div>
+  <div class="classifier_ai_logo">
+      <img src="../static/assets/community-logo.svg" />
+  </div>
+  <div class="ai_main"></div>
+          <main>
+            <h2>Top posts in this community:</h2>
+            <div class="posts">
+            {% for post in posts %}
+              {% if p.val().title == post.val().community %}
+              <div class="post">
+                        <p class="title"><a href="/post/{{post.key()}}">{{post.val().title}}</a></p>
+                        <a href="/post/{{post.key()}}">
+                        <img src= "{{storage.child("images/" + post.val().image_address).get_url(None) }}" style="width:250px;height:200px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */">
+                        </a>
+                        <p class="type">This image is a: {{post.val().type}}</p>
+                        <p class="author">by {{post.val().author}}</p>
+              </div>
+              {% endif %}        
+            {% endfor %}
+          </div>
+          </main>
+          <main>
+            <h2>Top news stories in this community:</h2>
+            <div class="post">
+            {% for post in news %}
+            {% if p.val().title == post.val().community %}
+            <div class="post">
+                      <p class="title"><a href="/news_post/{{post.key()}}">{{post.val().title}}</a></p>
+                      <p class="author">by {{post.val().author}}</p>
+            </div>
+            {% else %}
+                  <div class="noposts">
+                      <img src="../static/assets/2404627.svg" />
+                      <p>What? No posts?, Why don't you try adding your own.</p>
+                  </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </main>
+      </div>
+   {% endfor %}
+   <footer style="  text-align: center;
+   padding: 1px;
+   background-color: white;
+   color: black;
+   position: relative;
+   top: 100px;
+   width: 100%;">
+   <p><a href="/sitemap">Sitemap    </a><a href="/blog">Blog      </a>    <a href="/sitemap">About</a></p>
+   <p> ©UNSTechnologies 2020</p>
+</footer>
+   
+{% endblock %}

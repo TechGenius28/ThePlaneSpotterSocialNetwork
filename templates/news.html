@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+</head>
+<div class="home_header1">
+    <div class="home_latest_title1">
+        <h1>News</h1>
+        <p>Discover the latest news stories.</p>
+        <p>Create a news story...</p>
+        <form action="/create">
+          <input type="submit" value="Create" />
+      </form>
+    </div>
+</div>
+<div class="classifier_ai_logo">
+    <img src="../static/assets/news-logo.svg" />
+</div>
+
+<div class="ai_main"></div>
+    <main>
+    <h2>Latest news stories:</h2>
+    <br>
+    <form method="POST" action="/news" enctype="multipart/form-data">
+        <div class="form-control">
+            <br>
+            <textarea name="search_bar" placeholder="Search..."></textarea>
+            <br>
+            <input type="submit" value="Search">
+        </div>
+    </form>
+    <div class="posts">
+        {% if search_request %}
+            {% if posts %}
+            {% for post in posts %}
+            {% if post.val().title == search_request %}
+                <br>
+                    <div class="post">
+                        <p class="title"><a href="/news_post/{{post.key()}}">{{post.val().title}}</a></p>
+                        <a href="/news_post/{{post.key()}}">
+                        <img src= "{{storage.child("images/" + post.val().image_address).get_url(None) }}" style="width:300px;height:250px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */">
+                        
+                    </a>
+                        <br>
+                        <br>
+                        <p class="author">by {{post.val().author}}</p>
+                    </div>
+                    {% endif %}
+            {% endfor %}
+            {% endif %}
+        {% else %}
+        {% if posts %}
+        {% for post in posts %}
+            <br>
+                <div class="post">
+                    <p class="title"><a href="/news_post/{{post.key()}}">{{post.val().title}}</a></p>
+                    <a href="/news_post/{{post.key()}}">
+                    <img src= "{{storage.child("images/" + post.val().image_address).get_url(None) }}" style="width:300px;height:250px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */">
+                    </a>
+                    <br>
+                    <br>
+                    <p class="author">by {{post.val().author}}</p>
+                </div>
+        {% endfor %}
+        {% endif %}
+        {% endif %}
+    </div>
+    </main>
+
+    <footer style="  text-align: center;
+        padding: 1px;
+        background-color: #fafafa;
+        color: black;
+        position: relative;
+        top: 100px;
+        width: 100%;">
+        <hr>
+        <p><a href="/sitemap">Sitemap</a>    <a href="/blog">Blog</a>    <a href="/sitemap">About</a></p>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+</div>
+{% endblock %}

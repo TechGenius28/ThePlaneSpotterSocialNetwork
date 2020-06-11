@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+    <main>
+    <form method="POST" action="/signup">
+        {% if message %}
+            <p class="error">{{message}}</p>
+        {% endif %}
+        <br>
+        <h2>Signup</h2>
+        <div class="form-control">
+            <label for="username">Username:</label>
+            <input type="username" name="username" placeholder="username">
+        </div>
+        <div class="form-control">
+            <label for="email">Email:</label>
+            <input type="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-control">
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="Password">
+        </div>
+        <input type="submit" value="Sign Up">
+    </form>
+    </main>
+
+    <footer style="  text-align: center;
+        padding: 1px;
+        background-color: #fafafa;
+        color: black;
+        position: relative;
+        top: 100px;
+        width: 100%;">
+        <hr>
+        <p><a href="/sitemap">Sitemap    </a><a href="/sitemap">    Blog    </a><a href="/sitemap">About</a></p>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+
+{% endblock %}

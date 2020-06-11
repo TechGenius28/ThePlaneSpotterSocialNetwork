@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="home_header1">
+  <div class="home_latest_title1">
+      <h1>Create news</h1>
+      <p>Create a news story by writing and article and adding an image</p>
+  </div>
+</div>
+<div class="classifier_ai_logo">
+  <img src="../static/assets/news-logo.svg" />
+</div>
+
+<div class="ai_main"></div>
+    <form method="POST" action="/create_news_post" enctype="multipart/form-data">
+      <main>
+      <body>
+        <div class="dropdown">
+          <button class="dropbtn">Select post type</button>
+          <div class="dropdown-content">
+            <a href="/create_news_post">News post</a>
+            <a href="/create">Image post</a>
+          </div>
+        </div>
+        <br>
+        <h2>Create a news post:</h2>
+        <div class="form-control">
+          <label for="title">Post title:</label>
+          <input type="text" name="title" placeholder="post title">
+      </div>
+
+      <div class="form-control">
+        <label for="content">Post content:</label>
+        <textarea name="content" placeholder="post body content"></textarea>
+      </div>
+      <div class="form-control">
+        <label for="content">Upload :</label>
+        <input type="file" name="upload" class="random">
+      </div>
+
+      <div class="form-control">
+        <label for="community">Enter Community name:</label>
+        <textarea name="community" placeholder="community..."></textarea>
+      </div>
+
+     </body>
+      <body>
+        <br>
+        <input type="submit" value="Create">
+      </body>
+    </form>
+  </main>
+</div>
+  <footer style="  text-align: center;
+  padding: 1px;
+  background-color: #fafafa;
+  color: black;
+  position: relative;
+  top: 100px;
+  width: 100%;">
+  <hr>
+  <p><a href="/sitemap">Sitemap</a>    <a href="/blog">Blog</a>    <a href="/sitemap">About</a></p>
+  <p> ©UNSTechnologies 2020</p>
+</footer>
+    
+
+    <script>
+
+
+    </script>
+
+
+<style>
+  .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+
+
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
+
+
+
+{% endblock %}

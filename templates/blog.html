@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="home_header1">
+    <div class="home_latest_title1">
+        <h1>Blog</h1>
+        <p>Updates from The Plane Spotter</p>
+        <p>Recently seen a plane?</p>
+        <p>Create a post...</p>
+        <form action="/create">
+          <input type="submit" value="Create" />
+      </form>
+    </div>
+</div>
+<div class="classifier_ai_logo">
+    <img src="../static/assets/blog-logo.svg" />
+</div>
+<div class="ai_main"></div>
+
+
+    <footer style="  text-align: center;
+        padding: 1px;
+        background-color: white;
+        color: black;
+        position: relative;
+        top: 100px;
+        width: 100%;">
+        <p><a href="/sitemap">Sitemap    </a><a href="/blog">Blog      </a>    <a href="/sitemap">About</a></p>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+</div>
+
+{% endblock %}

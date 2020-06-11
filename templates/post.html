@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for p in data %}
+
+    <div class="home_header1">
+      <div class="home_latest_title1">
+          <h1>{{p.val().title}}</h1>
+          <p>Post by: {{p.val().author}}</p>
+          <p>{{p.val().time}}</p>
+          <p>Our AI thinks that this is a: {{p.val().type}}</p>
+      </div>
+  </div>
+  <div class="classifier_ai_logo">
+      <img src="../static/assets/latest-post-logo.svg" />
+  </div>
+  <div class="ai_main"></div>
+        <div class="single">
+          <main>
+            <h2>Post:</h2>
+            <center>
+            <img src= "{{storage.child("images/" + p.val().image_address).get_url(None) }}" style="width:600px;height:500px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */">
+            </center>
+            <br>
+            <br>
+            <hr>
+            <p>Post content:<p>
+            {% for para in p.val().content %}
+              <p>{{para}}</p>
+            {% endfor %}
+            <br>
+            <hr>
+            <p>Location of plane:</p>
+            <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+            <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+            <center>
+            <div id='map' style='width: 600px; height: 500px;-moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */'></div>
+            </center>
+            <script type="text/javascript">
+              var map = new mapboxgl.Map({
+                container: 'map',
+                center: [ {{p.val().longitude}} , {{p.val().latitude}}],
+                style: 'mapbox://styles/mapbox/streets-v11',
+                zoom: 6
+              });
+              var marker = new mapboxgl.Marker()
+                .setLngLat([{{p.val().longitude}}, {{p.val().latitude}}])
+                .addTo(map);
+            </script>
+            <br>
+            {% if session["usr"] %}
+                {% if session["email"] == p.val().author %}
+                <a href="/edit/{{p.key()}}">Edit Post</a>
+                {% endif %}
+            {% endif %}
+            <hr>
+            <p>Post a comment:</p>
+            {% if session["usr"] %}
+            <form method="POST" action="/post/{{p.key()}}" enctype="multipart/form-data">
+              <div class="form-control">
+                  <br>
+                  <label for="comment">Post comment:</label>
+                  <textarea name="comment_" placeholder="post body content"></textarea>
+                  <br>
+                  <input type="submit" value="Post">
+              </div>
+            </form>
+            {% endif %}
+            {% if not session["usr"] %}
+            <p>Please sign in to post a comment...</p>
+            <form action="/login">
+              <input type="submit" value="Login" />
+            </form>
+            <p>Or sign up..</p>
+            <form action="/signup">
+              <input type="submit" value="Sign up" />
+          </form>
+          {% endif %}
+          <br>
+          <hr>
+        <p>User comments:</p>
+            {% if comments %}
+              {% for c in comments %}
+                <p class="type">Comment by: anon</p>
+                <p class="type">Comment created at: {{c.val().time}}</p>
+                <br>
+                <p class="type">{{c.val().comment}}</p>
+                <hr>
+              {% endfor %}
+              {% else %}
+                  <div class="noposts">
+                      <img src="../static/assets/2404627.svg" />
+                      <p>What? No comments?, Why don't you try adding your own.</p>
+                  </div>
+            {% endif %}
+            <br>
+        </main>
+        </div>
+        <br>
+        <br>
+        <br>
+        <footer style="  text-align: center;
+        padding: 1px;
+        background-color: white;
+        color: black;
+        position: relative;
+        top: 100px;
+        width: 100%;">
+        <p><a href="/sitemap">Sitemap    </a><a href="/blog">Blog      </a>    <a href="/sitemap">About</a></p>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+      </div>
+   {% endfor %}
+{% endblock %}

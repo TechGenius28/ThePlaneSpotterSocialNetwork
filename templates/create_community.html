@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+
+
+    <form method="POST" action="/create_community" enctype="multipart/form-data">
+      <main>
+      <body>
+        <br>
+        <h2>Create a new community:</h2>
+        <div class="form-control">
+            <label for="title">Name of community:</label>
+            <input type="text" name="title" placeholder="post title">
+        </div>
+        
+        <div class="form-control">
+          <label for="content">What is this community about:</label>
+          <textarea name="content" placeholder="about this community..."></textarea>
+        </div>
+        <br>
+
+     </body>
+      <body>
+        <br>
+        <input type="submit" value="Create">
+      </body>
+    </form>
+  </main>
+
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script>
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        zoom: 3,
+        center: [51.5074, 0.1278]
+      });
+
+      var marker = new mapboxgl.Marker({
+        draggable: true
+      })
+        .setLngLat([0, 0])
+        .addTo(map);
+      
+      function onDragEnd() {
+        var lngLat = marker.getLngLat();
+        coordinates.style.display = 'block';
+        coordinates.innerHTML =
+          'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+        var latitude = lngLat.lat
+        var longitude = lngLat.lng
+        document.getElementById("show_latitude").value = latitude;
+        document.getElementById("show_longitude").value = longitude;
+      }
+ 
+      marker.on('dragend', onDragEnd);
+
+    </script>
+
+      <style>
+        .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+        }
+      </style>
+
+
+<footer style="  text-align: center;
+padding: 1px;
+background-color: white;
+color: black;
+position: relative;
+top: 100px;
+width: 100%;">
+<p><a href="/sitemap">Sitemap    </a><a href="/blog">Blog      </a>    <a href="/sitemap">About</a></p>
+<p> ©UNSTechnologies 2020</p>
+</footer>
+
+{% endblock %}

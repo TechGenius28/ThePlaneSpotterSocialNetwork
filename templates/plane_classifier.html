@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+    <div class="home_header1">
+        <div class="home_latest_title1">
+            <h1>Plane Classifier</h1>
+            <br>
+            <p>We use a machine learning model that has been trained using thousands of pictures of planes in order to help us predict the model of aircraft. </p>
+            <p>Simply upload an image and we will tell you what aircraft it is.</p>
+        </div>
+    </div>
+    <div class="classifier_ai_logo">
+        <img src="../static/assets/ai-logo.svg" />
+    </div>
+    <div class="ai_main"></div>
+    <main>
+        <h2>Classifier your image:</h2>
+        <p>**This feaure is still in development and thus the predictions are still somewhat inaccurate**</p>
+        <br>
+        <br>
+        <form method="POST" action="/plane_classifier" enctype="multipart/form-data">
+            <p>Upload an image that you wish to classify...</p>
+            <input type="file" name="upload" class="random">
+            <br>
+            <input type="submit" value="Classify">
+            <br>
+        </form>
+        {% if message %}
+            <p class="error">Result: {{message}}</p>
+        {% endif %}
+        <p>Why don't you share your picture?</p>
+        <form action="/create">
+            <input type="submit" value="Share" />
+        </form>
+    </main>
+    <footer style="  text-align: center;
+        padding: 1px;
+        background-color: #fafafa;
+        color: black;
+        position: relative;
+        top: 100px;
+        width: 100%;">
+        <hr>
+        <p><a href="/sitemap">Sitemap</a>    <a href="/blog">Blog</a>    <a href="/sitemap">About</a></p>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+    </div>
+{% endblock %}

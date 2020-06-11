@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+</head>
+<div class="home_header1">
+    <div class="home_latest_title1">
+        <h1>Map</h1>
+        <p>Expore the map to discover recently spotted planes.</p>
+        <p>Recently seen a plane?</p>
+        <p>Create a post...</p>
+        <form action="/create">
+          <input type="submit" value="Create" />
+      </form>
+    </div>
+</div>
+<div class="classifier_ai_logo">
+    <img src="../static/assets/map-logo.svg" />
+</div>
+<div class="ai_main"></div>
+    <main>
+        <script  src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+      <h2>Recently spotted aicraft:</h2>
+      <center>
+        <br>
+        <div  id='map' style='width: 90%; height: 800px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */'></div>
+    </center>
+    <p>Create a post...</p>
+    <form action="/create">
+        <input type="submit" value="Create" />
+    </form>
+    </main>
+
+    <footer style="  text-align: center;
+        padding: 1px;
+        background-color: white;
+        color: black;
+        position: relative;
+        top: 100px;
+        width: 100%;">
+        <p><a href="/sitemap">Sitemap    </a><a href="/blog">Blog      </a>    <a href="/sitemap">About</a></p>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+</div>
+    <script type="text/javascript">
+
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        zoom: 2,
+        center: [51.5074, 0.1278]
+        });
+        map.on('load', function() {
+          map.addSource('places', {
+          'type': 'geojson',
+          'data': {
+          'type': 'FeatureCollection',
+          'features': [
+          {% for post in posts %}
+              {
+              'type': 'Feature',
+              'properties': {
+              'description':
+              '<p class="title"><a href="/post/{{post.key()}}">{{post.val().title}}</a></p>',
+              'icon': 'airport'
+              },
+              'geometry': {
+              'type': 'Point',
+              'coordinates': [ {{post.val().longitude}} , {{post.val().latitude}}]
+              }
+              },
+          {% endfor %}
+          ]
+          }
+          });
+          map.addLayer({
+              'id': 'places',
+              'type': 'symbol',
+              'source': 'places',
+              'layout': {
+              'icon-image': '{icon}-15',
+              'icon-allow-overlap': true
+              }
+          });
+          map.on('click', 'places', function(e) {
+              var coordinates = e.features[0].geometry.coordinates.slice();
+              var description = e.features[0].properties.description;
+              
+              // Ensure that if the map is zoomed out such that multiple
+              // copies of the feature are visible, the popup appears
+              // over the copy being pointed to.
+              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+              }
+              new mapboxgl.Popup()
+              .setLngLat(coordinates)
+              .setHTML(description)
+              .addTo(map);
+              });
+              // Change the cursor to a pointer when the mouse is over the places layer.
+              map.on('mouseenter', 'places', function() {
+              map.getCanvas().style.cursor = 'pointer';
+              });
+              // Change it back to a pointer when it leaves.
+              map.on('mouseleave', 'places', function() {
+              map.getCanvas().style.cursor = '';
+              });
+              });
+          </script>
+{% endblock %}

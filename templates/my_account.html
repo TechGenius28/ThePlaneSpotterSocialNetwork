@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="home_header1">
+    <div class="home_latest_title1">
+        <h1>My account</h1>
+        <p>Seen a plane recently?</p>
+        <p>Create a new post...</p>
+        <form action="/create">
+          <input type="submit" value="Create" />
+      </form>
+    </div>
+</div>
+<div class="classifier_ai_logo">
+    <img src="../static/assets/user-logo.svg" />
+</div>
+<div class="ai_main"></div>
+    <main>
+      <h2>My account:</h2>
+      <br>
+        {% for ac in user_account %}
+            {% if ac.val().email == user_n %}
+                <div class="account">
+                    <p>{{ac.val().username}}</p>
+                    <p>Email: {{ac.val().email}}</p>
+                    <p>Account created at: {{ac.val().time}}</p>
+                    <br>
+                    <hr>
+                    <p>My posts:</p>
+                    <div class="posts">
+                        {% if my_posts %}
+                            {% for post in my_posts %}
+                            {% if post.val().author == ac.val().email %}
+                            <br>
+                                <div class="post">
+                                    <p class="title"><a href="/post/{{post.key()}}">{{post.val().title}}</a></p>
+                                    <a href="/post/{{post.key()}}">
+                                    <img src= "{{storage.child("images/" + post.val().image_address).get_url(None) }}" style="width:300px;height:250px;">
+                                    </a>
+                                    <br>
+                                    <p class="type">This image is a: {{post.val().type}}</p>
+                                    <br>
+                                    <p class="author">by {{post.val().author}}</p>
+                                </div>
+                            {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if my_news_posts %}
+                        {% for post in my_news_posts %}
+                        {% if post.val().author == ac.val().email %}
+                        <br>
+                            <div class="post">
+                                <p class="title"><a href="/post/{{post.key()}}">{{post.val().title}}</a></p>
+                                <a href="/post/{{post.key()}}">
+                                </a>
+                                <br>
+                                <br>
+                                <p class="author">by {{post.val().author}}</p>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </main>
+    <footer style="  text-align: center;
+        padding: 1px;
+        background-color: white;
+        color: black;
+        position: relative;
+        top: 100px;
+        width: 100%;">
+        <p><a href="/sitemap">Sitemap    </a><a href="/blog">Blog      </a>    <a href="/sitemap">About</a></p>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+</div>
+
+{% endblock %}

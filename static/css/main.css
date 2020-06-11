@@ -1,0 +1,512 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    color: #222;
+    font-family: "Noto Sans HK";
+    position: relative;
+    background: #8E2DE2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    width: 100%;
+    top: 0px;
+    z-index: 99;
+    font-size: 1rem;
+
+}
+
+nav ul{
+    padding: 10px 0px;
+    margin: 0px;
+}
+
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 10px;
+
+}
+
+nav ul li a{
+    text-decoration: none;
+    display: block;
+    color: #222;
+    text-transform: lowercase;
+    font-size: 14px;
+}
+
+nav ul li {
+    color: #222;
+}
+
+nav ul:first-of-type li a {
+    color: #222;
+    font-weight: bold;
+}
+
+header {
+    height: 350px;
+    background: -webkit-linear-gradient(to right, #130d40, #130d40);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #130d40, #130d40); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #eee;
+    position: relative;
+
+    background-color: red;
+  
+    /* Create the gradient. */
+    background-image: linear-gradient(45deg, #ff4000, #2f00ff);
+    
+    /* Set the background size and repeat properties. */
+    background-size: 100%;
+    background-repeat: repeat;
+    /* Use the text as a mask for the background. */
+    /* This will show the gradient as a text color rather than element bg. */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+.home_header{
+  height: 610px;
+  background: -webkit-linear-gradient(to right, #130d40, #130d40);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #130d40, #130d40); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #eee;
+  position: relative;
+
+}
+
+.footer_block{
+  height: 200px;
+  background: -webkit-linear-gradient(to right, #130d40, #130d40);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #130d40, #130d40); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #eee;
+  position: absolute;
+  top: 1000px
+}
+
+.footer_column_left{
+  position: absolute;
+  top: 2100px;
+  right: 50%;
+  width: 45%;
+  height: 100px;
+}
+.footer_column_right{
+  position: absolute;
+  top: 2100px;
+  right: 0%;
+  width: 45%;
+  height: 100px;
+}
+
+.home_header1{
+  height: 400px;
+  background: -webkit-linear-gradient(to right, #130d40, #130d40);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #130d40, #130d40); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #eee;
+  position: relative;
+
+}
+
+header div {
+    width: 70%;
+    max-width: 800px;
+    margin-left: 100px;
+}
+
+header img {
+    position: absolute;
+    bottom: -30px;
+    width: 20%;
+    right: 40px;
+}
+
+
+
+header div h1 {
+    margin: 0px;
+    padding-left: 0px;
+    padding-top: 100px;
+    font-size: 5rem;
+    line-height: 5rem;
+   border-bottom: 1px dotted orangered;
+    text-transform: uppercase;
+    padding-bottom: 30px;
+}
+
+
+header div p {
+   padding-left: 0px;
+   width: 60%;
+   padding-bottom: 10px;
+
+}
+.coordinates {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  padding: 5px 10px;
+  margin: 0;
+  font-size: 11px;
+  line-height: 18px;
+  border-radius: 3px;
+  display: none;
+}
+
+main {
+    align-items: center;
+    margin: 100px auto;
+    padding-left:50px;
+    padding-right:50px;
+    padding-bottom: 40px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+
+}
+.noposts {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+}
+.noposts img {
+    width: 70%;
+}
+.noposts p {
+    font-size: 2rem;
+    color: rgb(145, 145, 145);
+}
+
+.posts {
+    display: flex;
+    /*justify-content: center;*/
+    flex-wrap: wrap;
+}
+
+.post {
+    margin: 20px;
+
+}
+.author {
+    padding: 0px;
+    margin-top: -12px;
+    color: #999;
+}
+
+.post .title a {
+    font-size: 3rem;
+    text-decoration: none;
+    color: #222;
+    padding: 0px;
+   border-bottom: 1px solid #222;
+}
+
+.post .title1 a {
+  font-size: 3rem;
+  text-decoration: none;
+  color: black;
+  padding: 0px;
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+form * {
+    display: block;
+}
+
+form input, form textarea{
+    background: none;
+    width: 100%;
+    font-family: "Noto Sans HK";
+    border: none;
+    border-bottom: 1px solid #666;
+    padding: 10px 0px;
+    margin: 10px 0px;
+}
+
+form input[type="submit"] {
+    border: none;
+    width: 10%;
+    min-width: 120px;
+    background: #EECDA3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F74A00, #F74A00);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F74A00, #F74A00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-box-shadow: 0px 10px 12px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 12px -10px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 12px -10px rgba(0,0,0,0.75);
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #fff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+input[type="submit"].delete {
+    margin-top: 150px;
+    background: none;
+    box-shadow: none;
+    color: #222;
+    border: 1px solid #222;
+}
+
+.error {
+    color: rgb(255, 74, 74);
+    font-style: italic;
+}
+.single {
+    width: 87%;
+    margin: 0 auto;
+}
+.single .title {
+    font-size: 3rem;
+    margin: 0px;
+    padding: 0px;
+}
+
+.home_map{
+  position: absolute;
+  width: 45%;
+  top: 1000px;
+  right: 50%;
+  height: 100px;
+}
+.home_adbox{
+  position: absolute;
+  top: 4800px;
+  right: 0%;
+  width: 45%;
+  height: 100px;
+}
+
+.home_imagepost{
+  position: absolute;
+  top: 1000px;
+  right: 0%;
+  width: 45%;
+  height: 100px;
+
+}
+
+.ai_main{
+  position: absolute;
+  top: 800px;
+  right: 10%;
+  width: 80%;
+  height: 100px;
+}
+
+.home_latest_title {
+  position: absolute;
+  top: 360px;
+  right: 48%;
+  width: 48%;
+  height: 100px;
+}
+
+.home_latest_title1 {
+  position: absolute;
+  top: 71px;
+  right: 10%;
+  width: 48%;
+  height: 100px;
+  color: white;
+}
+
+
+.classifier_ai_logo {
+  position: absolute;
+  width: 18%;
+  top: 434px;
+  right: 72%
+}
+
+.home_latest_title h1{
+  font-size: 3em;
+  color: white
+}
+
+.home_popcommunities{
+  position: absolute;
+  top: 2300px;
+  right: 50%;
+  width: 45%;
+  height: 100px;
+
+}
+.home_ai_link{
+  position: absolute;
+  top: 2700px;
+  right: 50%;
+  width: 45%;
+  height: 100px;
+
+}
+
+.home_signup{
+  position: absolute;
+  top: 480px;
+  right: 10%;
+  width: 35%;
+  height: 100px;
+  color: white
+}
+
+
+
+
+.home_top_post{
+  position: absolute;
+  top: 480px;
+  right: 50%;
+  width: 45%;
+  height: 100px;
+}
+
+.home_news{
+  position: absolute;
+  top: 1700px;
+  right: 50%;
+  width: 45%;
+  height: 100px;
+
+}
+
+
+
+.hidden {
+  display: none;
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal:hover {
+  opacity: 0.2;
+}
+
+/* Upload box */
+.upload-box {
+  font-size: 0.8rem;
+  color: #666666;
+  cursor: pointer;
+  width: 16rem;
+  height: 10rem;
+  background: #fff;
+  border: 0.1rem dashed #838388;
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1rem 0 2rem 0;
+}
+
+.upload-box.dragover {
+  /* background-color: grey; */
+  color: #eeeeee;
+  border: 0.1rem solid rgb(0, 120, 212);
+  box-shadow: inset 0 0 0 0.1rem rgb(0, 120, 212);
+}
+
+.upload-box:hover {
+  border-color: rgb(0, 120, 212);
+}
+
+.upload-box #image-preview {
+  max-width: 14rem;
+  max-height: 8rem;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+#image-result {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-height: 20rem;
+}
+
+#image-box {
+  position: relative;
+  width: auto;
+  float: left;
+  margin-bottom: 2rem;
+}
+
+#image-display {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-height: 20rem;
+}
+
+#image-display.loading {
+  filter: brightness(30%);
+}
+
+#pred-result {
+  color: white;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  margin: 0 auto;
+}
+
+/* Animation */
+#spinner {
+  box-sizing: border-box;
+  stroke: #cccccc;
+  stroke-width: 3px;
+  transform-origin: 50%;
+  animation: line 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    rotate 1.6s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(450deg);
+  }
+}
+
+
+
+
+@keyframes line {
+  0% {
+    stroke-dasharray: 2, 85.964;
+    transform: rotate(0);
+  }
+  50% {
+    stroke-dasharray: 65.973, 21.9911;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: 2, 85.964;
+    stroke-dashoffset: -65.973;
+    transform: rotate(90deg);
+  }
+}

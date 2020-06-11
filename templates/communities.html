@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="home_header1">
+    <div class="home_latest_title1">
+        <h1>Communities</h1>
+        <p>Communities are places to browse and share pictures, as well as news stories about a specific topic.</p>
+        <p>Can't find a community for you?</p>
+        <p>Create a community...</p>
+        <form action="/create_community">
+          <input type="submit" value="Create" />
+      </form>
+    </div>
+</div>
+<div class="classifier_ai_logo">
+    <img src="../static/assets/community-logo.svg" />
+</div>
+<div class="ai_main"></div>
+    <main>
+        <h2>Communities:</h2>
+        <form method="POST" action="/communities" enctype="multipart/form-data">
+            <div class="form-control">
+                <br>
+                <textarea name="search_bar" placeholder="Search..."></textarea>
+                <br>
+                <input type="submit" value="Search">
+            </div>
+        </form>
+    <div class="posts">
+        <div class="post">
+            <p class="title"><a href="/news">News community</a></p>
+            <a href="/news">
+            </a>
+            <br>
+            <br>
+        </div>
+        {% if search_request %}
+            {% if posts %}
+            {% for post in posts %}
+                {% if post.val().title == search_request %}
+                    <div class="post">
+                        <p class="title"><a href="/community_area/{{post.key()}}">{{post.val().title}}</a></p>
+                        <a href="/community_area/{{post.key()}}">
+                        </a>
+                        <br>
+                        <br>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
+        {% else %}
+        {% if posts %}
+        {% for post in posts %}
+                <div class="post">
+                    <p class="title"><a href="/community_area/{{post.key()}}">{{post.val().title}}</a></p>
+                    <a href="/community_area/{{post.key()}}">
+                    </a>
+                    <br>
+                    <br>
+                </div>
+        {% endfor %}
+        {% endif %}
+        {% endif %}
+    </div>
+    </main>
+</div>
+<footer style="  text-align: center;
+padding: 1px;
+background-color: white;
+color: black;
+position: relative;
+top: 100px;
+width: 100%;">
+<p><a href="/sitemap">Sitemap    </a><a href="/blog">Blog      </a>    <a href="/sitemap">About</a></p>
+<p> ©UNSTechnologies 2020</p>
+</footer>
+{% endblock %}

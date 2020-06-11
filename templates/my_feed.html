@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <main>
+      <h2>My feed:</h2>
+      <p>See all the communities that you subscribe to in one place.</p>
+      <P>Search for new communities...</P>
+      <form action="/communities">
+        <input type="submit" value="Discover" />
+    </form>
+    </main>
+      <br>
+        {% for c in communities %}
+        {% for sub in c.val().subscriptions %}
+            {% if sub.val().Subscriber == user %}
+            <main>
+            <h2>c.val().title</h2>
+            {% for post in posts%}
+                {% if post.val().community == c.val().title %}
+                <p class="title"><a href="/post/{{post.key()}}">{{post.val().title}}</a></p>
+                <a href="/post/{{post.key()}}">
+                <img src= "{{storage.child("images/" + post.val().image_address).get_url(None) }}" style="width:250px;height:200px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */">
+                </a>
+                <p class="type">This image is a: {{post.val().type}}</p>
+                <p class="author">by {{post.val().author}}</p>
+                {% endif %}
+            {% endfor %}  
+            </main>         
+            {% endif %}
+        {% endfor %}
+        {% endfor %}
+
+    <footer>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+
+{% endblock %}

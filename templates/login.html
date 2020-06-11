@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <main>
+  
+
+    <form method="POST" action="/login">
+          
+    {% if message %}
+        <p class="error">{{message}}</p>
+    {% endif %}
+        <br>
+        <h2>Login</h2>
+        <div class="form-control">
+            <label for="email">Email:</label>
+            <input type="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-control">
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="Password">
+        </div>
+        <input type="submit" value="Login">
+    </form>
+
+    
+    <form method="FORGOT" action="/login">
+        <div class="form-control">
+            <label for="email1">Reset password:</label>
+            <input type="email" name="email1" placeholder="Enter email...">
+        </div>
+        <input type="submit" value="Forgot?">
+    </form>
+
+    </main>
+
+    <footer style="  text-align: center;
+        padding: 1px;
+        background-color: white;
+        color: black;
+        position: relative;
+        top: 100px;
+        width: 100%;">
+        <p><a href="/sitemap">Sitemap    </a><a href="/blog">Blog      </a>    <a href="/sitemap">About</a></p>
+        <p> ©UNSTechnologies 2020</p>
+    </footer>
+
+{% endblock %}

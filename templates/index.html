@@ -1,0 +1,222 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="home_header">
+    </div>
+    <div class="home_map">
+      <script  src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+      <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+      <main>
+            <h2>Latest spotted locations:</h2>
+        <center>
+            <br>
+            <div  id='map' style='width: 80%; height: 500px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */'></div>
+        </center>
+        <form action="/map">
+            <input type="submit" value="Enlarge" />
+        </form>
+      </main>
+      <style>
+        .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        }
+      </style>
+
+      <script type="text/javascript">
+
+      var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      zoom: 2,
+      center: [51.5074, 0.1278]
+      });
+      map.on('load', function() {
+        map.addSource('places', {
+        'type': 'geojson',
+        'data': {
+        'type': 'FeatureCollection',
+        'features': [
+        {% for post in posts %}
+            {
+            'type': 'Feature',
+            'properties': {
+            'description':
+            '<p class="title"><a href="/post/{{post.key()}}">{{post.val().title}}</a></p>',
+            'icon': 'airport'
+            },
+            'geometry': {
+            'type': 'Point',
+            'coordinates': [ {{post.val().longitude}} , {{post.val().latitude}}]
+            }
+            },
+        {% endfor %}
+        ]
+        }
+        });
+        map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+            'icon-image': '{icon}-15',
+            'icon-allow-overlap': true
+            }
+        });
+        map.on('click', 'places', function(e) {
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.description;
+            
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+            new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(map);
+            });
+            // Change the cursor to a pointer when the mouse is over the places layer.
+            map.on('mouseenter', 'places', function() {
+            map.getCanvas().style.cursor = 'pointer';
+            });
+            // Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'places', function() {
+            map.getCanvas().style.cursor = '';
+            });
+            });
+        </script>
+        </div>
+        <div class="home_signup">
+            <h3>The Plane Spotter is a platform that endeavers to be the #1 community for avaition enthusiasts online.</h3>
+            <br>
+            <h3>New? Create an account for free...</h3>
+            <form action="/signup">
+                <input type="submit" value="Sign up" />
+            </form>
+            <h3>Or just login</h3>
+            <form action="/login">
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+
+        
+        <div class="home_latest_title">
+            <h1>LATEST POST</h1>
+        </div>
+
+        <div class="home_top_post">
+                {% if posts %}
+                    {% for post in posts %}
+                    {% if post.val().image_address == stats.val().latest_post %}
+                        <div class="post">
+                            <a href="/post/{{post.key()}}">
+                            <img src= "{{storage.child("images/" + post.val().image_address).get_url(None) }}" style="width:100%;height:70%;-moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */">
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="noposts">
+                        <img src="../static/assets/2404627.svg" />
+                        <p>What? No posts?, Why don't you try adding your own.</p>
+                    </div>
+                {% endif %}
+
+        </div>
+<br>
+
+
+    <div class="home_imagepost">
+        <main>
+            <h2>Latest posts:</h2>
+    <div class="posts">
+            
+
+        {% if posts %}
+            {% for post in posts[:10] %}
+                    <div class="post">
+                        <p class="title"><a href="/post/{{post.key()}}">{{post.val().title}}</a></p>
+                        <a href="/post/{{post.key()}}">
+                        <img src= "{{storage.child("images/" + post.val().image_address).get_url(None) }}" style="width:300px;height:250px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */">
+                        </a>
+                        <p class="type">This image is a: {{post.val().type}}</p>
+                        <p class="author">by {{post.val().author}}</p>
+                    </div>
+            {% endfor %}
+        {% else %}
+            <div class="noposts">
+                <img src="../static/assets/2404627.svg" />
+                <p>What? No posts?, Why don't you try adding your own.</p>
+            </div>
+        {% endif %}
+    </div>
+    <form action="/latest_posts">
+        <input type="submit" value="More..." />
+    </form>
+    </main>
+    </div>
+    <br>
+    <div class="home_news">
+    <div class="news">
+        <main>
+            <h2>News stories:</h2>
+            {% if posts %}
+            {% for post in news_post[:1]%}
+                <br>
+                    <div class="post">
+                        <p class="title"><a href="/news_post/{{post.key()}}">{{post.val().title}}</a></p>
+                        <a href="/news_post/{{post.key()}}">
+                        <center>
+                        <img src= "{{storage.child("images/" + post.val().image_address).get_url(None) }}" style="width:250px;height:200px; -moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; /* future proofing */-khtml-border-radius: 10px; /* for old Konqueror browsers */">
+                        </center>
+                    </a>
+                    </div>
+            {% endfor %}
+            {% endif %}
+            <form action="/news">
+                <input type="submit" value="More..." />
+            </form>
+        </main>
+    </div>
+    </div>
+<br>
+<div class="home_popcommunities">
+    <div class="communities">
+        <main>
+            <h2>Popular communities:</h2>
+            {% if communities %}
+            {% for c in communities[:3] %}
+                <br>
+                    <div class="post">
+                            <p class="title"><a href="/community_area/{{c.key()}}">{{c.val().title}}</a></p>
+                            <a href="/community_area/{{c.key()}}">
+                            </a>
+                            <br>
+                            <br>
+                    </div>
+            {% endfor %}
+            {% endif %}
+            <form action="/communities">
+                <input type="submit" value="More..." />
+            </form>
+        </main>
+    </div>
+    </div>
+    <div class="home_ai_link">
+        <div class="communities">
+            <main>
+                <h2>Image classifier:</h2>
+                <p>Seen a plane recently?</p>
+                <p>Don't know what it was?</p>
+                <p>Use our AI image classifier to find out the model of aircraft...</p>
+                <form action="/plane_classifier">
+                    <input type="submit" value="Classifier" />
+                </form>
+            </main>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://theplanespotter.herokuapp.com/</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/latest_posts</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/news</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/communities</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/plane_classifier</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/map</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/signup</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/login</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/post/-M9DQSMCspPT8zcEyR6T</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/post/-M8kNU7i-Cl1h9JGO-3m</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/post/-M8u2c7hi1TEOPxFcpYd</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/post/-M8uQtLdpaaRw3aaqZ4q</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/post/-M8zu_O6s7ClwABfcMiN</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/news_post/-M8lPWJfj4-mCEGAPOA2</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/community_area/-M8WlwBvugTOPYsEFN2p</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/sitemap</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://theplanespotter.herokuapp.com/blog</loc>
+  <lastmod>2020-06-07T12:37:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
